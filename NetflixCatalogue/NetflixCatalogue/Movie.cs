@@ -12,7 +12,7 @@ namespace NetflixCatalogue
         int hours;
         int minutes;
 
-        public Movie(int hours, int minutes, string name, string rating) : base(name, rating)
+        public Movie(int hours, int minutes, string name, string rating, string genreType) : base(name, rating, genreType)
         {
             this.hours = hours;
             this.minutes = minutes;
@@ -23,15 +23,15 @@ namespace NetflixCatalogue
         {
             get
             {
-                return String.Format("{0}:{1:00}", this.hours, this.minutes);
+                return String.Format("{0}h {1:00}mins", this.hours, this.minutes);
             }
         }
 
 
         //Overrides ToString() method to return a string of the name and duration of the movie
-        //public override string ToString()
-        //{
-        //    return (String.Format("Name of Show: {0}, Duration of Movie {1}",/*SHOW.name*/,this.duration));
-        //}
+        public override string ToString()
+        {
+            return (String.Format("Name of Show: {0}, Duration of Movie: {1}",this.name, this.duration));
+        }
     }
 }

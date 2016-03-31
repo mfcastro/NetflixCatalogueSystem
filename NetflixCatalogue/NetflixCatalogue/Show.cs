@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace NetflixCatalogue
 {
-    class Show : Title
+    public class Show : Title
     {
-        //Contains a list of Episodes
-        List<Episode> episodes = new List<Episode>();
+        public List<Episode> episodes = new List<Episode>();
 
-
+        bool newEpisode = true;
 
         /*ASK ABOUT THIS*/
-        public Show(string name, string rating) : base(name, rating)
+        public Show(string name, string rating, string genreType) : base(name, rating, genreType)
         {
+
         }
 
 
@@ -24,11 +24,40 @@ namespace NetflixCatalogue
 
         //????????????????????????????????????
 
+        
 
         //Overrides ToString() method to return a string of the name of the show and number of episodes
-        //public override string ToString()
-        //{ 
-        //    return (String.Format("Name of Show: {0}, Number of Episodes {1}",/*SHOW.name*/, episodes.Count));
-        //}
+
+        public override string ToString()
+        {
+            return (String.Format("Name of Show: {0}, Number of Episodes {1}", this.name, episodes.Count));
+        }
+
+
+        public void createEpisode()
+        {
+            while (newEpisode)
+            {
+                Console.WriteLine("What is the Episode Titile?");
+                string name =Console.ReadLine();
+
+                Console.WriteLine("What is this Episode rated");
+                string rating = Console.ReadLine();
+
+                episodes.Add(new Episode(name, rating));
+
+                Console.WriteLine("Episode Created!");
+                Console.WriteLine("Create another episode?");
+                string answer = Console.ReadLine();
+
+                if (answer.Equals("n"))
+                {
+                    newEpisode = false;
+                }
+
+            }
+
+           
+        }
     }
 }

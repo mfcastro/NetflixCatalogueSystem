@@ -8,22 +8,21 @@ namespace NetflixCatalogue
 {
     public class Title
     {
-        //Name field
+   
         public string name;
-        //Rating field
         public string rating;
+        public string genreType;
 
-        enum genre { Comedy,Romance,Action};
+
+        //enum genre { Comedy,Romance,Action};
        
-        // Offer two overloaded constructors: one that takes in all the fields and sets them
-        public Title(string name, string rating)
+        public Title(string name, string rating, string genreType)
         {
             this.name = name;
             this.rating = rating;
+            this.genreType = genreType;
         }
         
-
-        //       another that takes in no fields and sets the internal fields to null.
         public Title()
         {
             name = null;
@@ -32,10 +31,13 @@ namespace NetflixCatalogue
 
 
         //Overload plus(+) operator to take in two Titles and return an aggregated Genre
-        public static Title operator + (Title title1, Title title2)
+        public static Genre operator + (Title title1, Title title2)
         {
-            //Implement!!!
-            return null;
+            Genre newGenre = new Genre(String.Format("{0}-{1}", title1.genreType, title2.genreType));
+            newGenre.titleList.Add(title1);
+            newGenre.titleList.Add(title2);
+
+            return newGenre;
         }
            
        

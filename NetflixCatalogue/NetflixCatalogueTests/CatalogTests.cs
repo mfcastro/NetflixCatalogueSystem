@@ -11,11 +11,6 @@ namespace NetflixCatalogue.Tests
     [TestClass()]
     public class CatalogTests
     {
-        [TestMethod()]
-        public void CatalogTest()
-        {
-            Catalog catalog = new Catalog();
-            Assert.Fail();
-        }
+     
     }
 }

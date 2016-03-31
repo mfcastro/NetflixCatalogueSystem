@@ -17,11 +17,22 @@ namespace NetflixCatalogue
             //      and print to the console to show that the program works.
 
             Catalog catalog = new Catalog();
-            View view = new View();
+            //View view = new View();
 
             catalog.addTiitleToAll();
+            catalog.getCatelog();
 
-            view.printOutGenresAndTitles(catalog.all);
+           // view.printOutGenresAndTitles(catalog.all);
+
+            catalog.addTitleToGenre(catalog.dieHard, catalog.comedy);
+
+            //view.printOutGenresAndTitles(catalog.comedy);
+
+            //for(int i = 0; i < catalog.genreList.Count; i++)
+            //{
+            //    Console.WriteLine(catalog.genreList[i].genreType);
+            //}
+
             Console.ReadLine();
 
         }

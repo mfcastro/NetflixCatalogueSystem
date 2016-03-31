@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace NetflixCatalogue
 {
-    class Genre : IEnumerable
+    public class Genre : IEnumerable
     {
         public string genreType;
         
         //Contains a list of Titles
-        List<Title> titleList = new List<Title>();
+        public List<Title> titleList = new List<Title>();
 
         //Create the genres: All, Romance, Action, Comedy.They need to share some titles(such as Romantic Comedies)
         //      by reference, not by duplicating the title itself.
@@ -35,8 +35,17 @@ namespace NetflixCatalogue
         //        in that specific genre would include film titles from Romance and film titles from Comedy
         public static Genre operator + (Genre genre1, Genre genre2)
         {
-            //Implement!!!!!
-            return null;
+            if (genre1.Equals(genre2))
+            {
+                return genre1;
+            }
+            else
+            {
+                Genre genre = new Genre(String.Format("{0}-{1}", genre1.genreType, genre2.genreType));
+                return genre;
+
+            }
+            
         }
 
 

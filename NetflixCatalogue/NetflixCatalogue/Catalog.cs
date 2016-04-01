@@ -81,7 +81,6 @@ namespace NetflixCatalogue
 
                 string keyPressed = Console.ReadLine();
 
-                //ConsoleKeyInfo keyPressed = Console.ReadKey(true);
 
                 getKeyPressed(keyPressed);
                 Console.WriteLine();
@@ -159,7 +158,7 @@ namespace NetflixCatalogue
                 Console.WriteLine("[{0}] Add {1}", i+1, thingsToAdd[i]);
             }
 
-            // ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+      
             string keyPressed = Console.ReadLine();
             selectOptionInAddMenu(keyPressed);
         }
@@ -168,22 +167,22 @@ namespace NetflixCatalogue
         {
             if (keyPressed.Equals("1"))
             {
-                //genre
+              
                 addNewGenre();
             }
             else if (keyPressed.Equals("2"))
             {
-                //show
+             
                 addNewShow();
             }
             else if (keyPressed.Equals("3"))
             {
-                //movie
+             
                 addNewMovie();
             }
             else if (keyPressed.Equals("4"))
             {
-                //episode to show
+            
                 getEpisodesToShowMenu();
             }
           
@@ -261,7 +260,6 @@ namespace NetflixCatalogue
             Console.WriteLine("Select option from menu to find show:");
             getGenreMenu();
             string keyPressed = Console.ReadLine();
-            //ConsoleKeyInfo keyPressed = Console.ReadKey(true);
             selectGenreInMenuToGetShow(keyPressed);
            
 
@@ -281,7 +279,6 @@ namespace NetflixCatalogue
 
         public void selectShowToAddEpisode(Genre genre)
         {
-            //ConsoleKeyInfo keyPressed = Console.ReadKey(true);
             string keyPressed = Console.ReadLine();
 
             
@@ -295,7 +292,6 @@ namespace NetflixCatalogue
 
         public void addEpisodesToShow(Genre genre, int numShow)
         {
-            //ConsoleKeyInfo keypressed = Console.ReadKey();
 
             string keyPressed = Console.ReadLine();
 

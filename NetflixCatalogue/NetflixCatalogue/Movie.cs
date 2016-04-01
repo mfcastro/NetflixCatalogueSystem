@@ -18,7 +18,7 @@ namespace NetflixCatalogue
             this.minutes = minutes;
         }
 
-        //Duration field
+
         public string duration
         {
             get
@@ -28,7 +28,7 @@ namespace NetflixCatalogue
         }
 
 
-        //Overrides ToString() method to return a string of the name and duration of the movie
+        
         public override string ToString()
         {
             return (String.Format("Name of Show: {0}, Duration of Movie: {1}",this.name, this.duration));

@@ -9,7 +9,6 @@ namespace NetflixCatalogue
     public class Episode
     {
        public string episodeName;
-        //Rating field
         public double  rating = 0;
 
         public Episode(string episodeName, double rating)

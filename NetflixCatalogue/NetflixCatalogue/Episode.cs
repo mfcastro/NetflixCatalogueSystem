@@ -10,12 +10,13 @@ namespace NetflixCatalogue
     {
        public string episodeName;
         //Rating field
-        public string rating;
+        public double  rating = 0;
 
-        public Episode(string episodeName, string rating)
+        public Episode(string episodeName, double rating)
         {
             this.episodeName = episodeName;
             this.rating = rating;
         }
+
     }
 }

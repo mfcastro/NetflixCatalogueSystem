@@ -14,7 +14,7 @@ namespace NetflixCatalogue.Tests
         [TestMethod()]
         public void TitleTest()
         {
-            Title title = new Title("movie", "PG");
+            Title title = new Title("movie", 4, "Generic");
 
             Assert.IsNotNull(title.name);
             Assert.IsNotNull(title.rating);
@@ -27,6 +27,19 @@ namespace NetflixCatalogue.Tests
 
             Assert.IsNull(title.name);
             Assert.IsNull(title.rating);
+        }
+
+        public void TitleTestCorrectValues()
+        {
+            Title title = new Title("movie", 4, "Generic");
+            string name = "movie";
+            string rating = "PG";
+            string genreType = "Generic";
+
+            Assert.AreEqual(name, title.name);
+            Assert.AreEqual(rating, title, rating);
+            Assert.AreEqual(genreType, title.genreType);
+
         }
     }
 }

@@ -12,7 +12,7 @@ namespace NetflixCatalogue
         int hours;
         int minutes;
 
-        public Movie(int hours, int minutes, string name, string rating, string genreType) : base(name, rating, genreType)
+        public Movie(int hours, int minutes, string name, double rating, string genreType) : base(name, rating, genreType)
         {
             this.hours = hours;
             this.minutes = minutes;
@@ -32,6 +32,11 @@ namespace NetflixCatalogue
         public override string ToString()
         {
             return (String.Format("Name of Show: {0}, Duration of Movie: {1}",this.name, this.duration));
+        }
+
+        public void createEpisode()
+        {
+            Console.WriteLine("This is a movie. You can't add episodes to it");
         }
     }
 }

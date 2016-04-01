@@ -10,13 +10,13 @@ namespace NetflixCatalogue
     {
    
         public string name;
-        public string rating;
+        public double ? rating;
         public string genreType;
 
 
         //enum genre { Comedy,Romance,Action};
        
-        public Title(string name, string rating, string genreType)
+        public Title(string name, double rating, string genreType)
         {
             this.name = name;
             this.rating = rating;

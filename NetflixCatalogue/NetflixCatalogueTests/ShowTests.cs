@@ -12,20 +12,64 @@ namespace NetflixCatalogue.Tests
     public class ShowTests
     {
         [TestMethod()]
-        public void createEpisodeTest()
+        public void getAggregateRatingTest()
         {
             //Arrange
-            List<Episode> episodes = new List<Episode>();
-            Show show = new Show("One", "R");
-            string episodetitle = "OneTitle";
-            string rating = "R";
+            Show show = new Show("The Best Show Ever", 4, "Comedy" );
+            Episode one = new Episode("Pilot Episode", 4.5);
+            Episode Two = new Episode("Here we are again", 5);
+            Episode three = new Episode("Last episode for now", 3);
 
+            double newRating = (4.5 + 5 + 3) / 3;
             //Act
-            show.createEpisode(episodetitle, rating);
+            show += one;
+            show += Two;
+            show += three;
+            show.getAggregateRating(show);
+
             //Assert
-            Assert.AreSame(episodetitle, show.episodes[0].episodeName);
-            Assert.AreSame(rating, show.episodes[0].rating);
-           
+            Assert.AreEqual(newRating, show.rating);
+         
         }
+
+        [TestMethod()]
+        public void getAggregateRatingTestMissingOneEpisode()
+        {
+            //Arrange
+            Show show = new Show("The Best Show Ever", 4, "Comedy");
+            Episode one = new Episode("Pilot Episode", 4.5);
+            Episode Two = new Episode("Here we are again", 5);
+            Episode three = new Episode("Last episode for now", 3);
+
+            double newRating = (4.5 + 5 + 3) / 3;
+            //Act
+            show += one;
+            show += Two;
+            show.getAggregateRating(show);
+
+            //Assert
+            Assert.AreNotEqual(newRating, show.rating);
+
+        }
+
+        [TestMethod()]
+        public void getAggregateRatingIsNull()
+        {
+            //Arrange
+            Show show = new Show("The Best Show Ever", 4, "Comedy");
+            Episode one = new Episode("Pilot Episode", 4.5);
+            Episode Two = new Episode("Here we are again", 5);
+            Episode three = new Episode("Last episode for now", 3);
+
+            double ? newRating = null;
+            //Act
+            show.rating = null;
+
+            //Assert
+            Assert.IsNull(newRating, show.rating.ToString());
+
+        }
+
+
     }
 }

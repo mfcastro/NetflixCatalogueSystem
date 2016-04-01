@@ -16,6 +16,8 @@ namespace NetflixCatalogue
             //Show the program in use.Essentially, there needs to be data, run the program,
             //      and print to the console to show that the program works.
 
+
+
             Catalog catalog = new Catalog();
             //View view = new View();
 

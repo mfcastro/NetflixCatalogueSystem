@@ -6,27 +6,37 @@ using System.Threading.Tasks;
 
 namespace NetflixCatalogue
 {
-    public class Show : Title
+    public class Show : Title 
     {
         public List<Episode> episodes = new List<Episode>();
 
         bool newEpisode = true;
 
-        /*ASK ABOUT THIS*/
-        public Show(string name, string rating, string genreType) : base(name, rating, genreType)
+        public Show(string name, double rating, string genreType) : base(name, rating, genreType)
         {
 
         }
 
+       public void getAggregateRating(Show show)
+        {
+            double currentRating = 0;
 
+            for(int i = 0; i < show.episodes.Count; i++)
+            {
+                currentRating += show.episodes[i].rating;
+            }
 
-        //Overrides parent’s Rating to return an aggregated rating of Episode ratings
+            currentRating /= show.episodes.Count;
 
-        //????????????????????????????????????
+            show.rating = currentRating;
+        }
 
-        
-
-        //Overrides ToString() method to return a string of the name of the show and number of episodes
+      
+        public static Show operator + (Show show, Episode episode)
+        {
+            show.episodes.Add(episode);
+            return show;
+        }
 
         public override string ToString()
         {
@@ -42,7 +52,7 @@ namespace NetflixCatalogue
                 string name =Console.ReadLine();
 
                 Console.WriteLine("What is this Episode rated");
-                string rating = Console.ReadLine();
+                double rating = Double.Parse(Console.ReadLine());
 
                 episodes.Add(new Episode(name, rating));
 

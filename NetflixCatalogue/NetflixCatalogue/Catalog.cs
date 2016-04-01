@@ -21,20 +21,23 @@ namespace NetflixCatalogue
         public Genre horror = new Genre("Horror");
         public Genre drama = new Genre("Drama");
 
-        public Movie dieHard = new Movie(1,36, "Die Hard", "R","Action");
-        Movie deadpool = new Movie(1, 48, "Deadpool", "R", "Action");
-        Movie starWars = new Movie(2, 16, "Star Wars: The Force Awakens", "PG-13","Action");
-        public Movie zoolander2 = new Movie(1,42, "Zoolander 2", "PG-13", "Comedy");
-        Movie carol = new Movie(1, 58, "Carol", "R", "Drama");
+        public Movie dieHard = new Movie(1,36, "Die Hard", 5,"Action");
+        Movie deadpool = new Movie(1, 48, "Deadpool", 5, "Action");
+        Movie starWars = new Movie(2, 16, "Star Wars: The Force Awakens", 5,"Action");
+        public Movie zoolander2 = new Movie(1,42, "Zoolander 2", 5, "Comedy");
+        Movie carol = new Movie(1, 58, "Carol", 3.5, "Drama");
 
 
 
-        Show breakingBad = new Show("Breaking Bad", "TV-MA", "Drama");
-        Show houseOfCards = new Show("House of Cards", "TV-MA", "Drama");
-        Show orangeIsTheNewBlack = new Show("Orange Is the New Black", "TV-MA", "Drama");
-        Show narcos = new Show("Narcos", "TV-MA", "Comedy");
-        Show fullerHouse = new Show("Fuller House","TV-G", "Comedy");
+        Show breakingBad = new Show("Breaking Bad", 4.8, "Drama");
+        Show houseOfCards = new Show("House of Cards", 5, "Drama");
+        Show orangeIsTheNewBlack = new Show("Orange Is the New Black", 3.75, "Drama");
+        Show narcos = new Show("Narcos", 4, "Comedy");
+        Show fullerHouse = new Show("Fuller House",4.25, "Comedy");
 
+        Episode one = new Episode("Episode 1", 4);
+        Episode two = new Episode("Episodee 2", 4.25);
+        Episode three = new Episode("Episode 3", 4.5);
 
         public Catalog()
         {
@@ -52,6 +55,15 @@ namespace NetflixCatalogue
         {
             all += dieHard;
             all += breakingBad;
+            all += dieHard;
+            all += deadpool;
+            all += starWars;
+            all += zoolander2;
+            all += carol;
+            all += houseOfCards;
+            all += orangeIsTheNewBlack;
+            all += narcos;
+            all += fullerHouse;
         }
 
         public void addTitleToGenre(Title title, Genre genre)
@@ -67,7 +79,10 @@ namespace NetflixCatalogue
                 Console.WriteLine("NETFLIX CATALOG");
                 Console.WriteLine("View [v] Add [a]");
 
-                ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+                string keyPressed = Console.ReadLine();
+
+                //ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+
                 getKeyPressed(keyPressed);
                 Console.WriteLine();
             }
@@ -84,17 +99,17 @@ namespace NetflixCatalogue
             Console.WriteLine();
         }
 
-        public void getKeyPressed(ConsoleKeyInfo keyPressed)
+        public void getKeyPressed(string keyPressed)
         {
-            if (keyPressed.KeyChar.Equals('v'))
+            if (keyPressed.Equals("v"))
             {
                 getGenreMenu();
 
-                keyPressed = Console.ReadKey(true);
+                keyPressed = Console.ReadLine();
 
                 selectGenreInMenu(keyPressed);
             }
-            else if (keyPressed.KeyChar.Equals('a'))
+            else if (keyPressed.Equals("a"))
             {
                 getAddMenu();
 
@@ -104,11 +119,11 @@ namespace NetflixCatalogue
 
         }
 
-        public void selectGenreInMenu(ConsoleKeyInfo keyPressed)
+        public void selectGenreInMenu(string keyPressed)
         {
             try
             {
-                int numPressed = int.Parse(keyPressed.KeyChar.ToString()) - 1;
+                int numPressed = int.Parse(keyPressed.ToString()) - 1;
                 view.printOutGenresAndTitles(genreList[numPressed]);
             }
             catch(Exception e)
@@ -119,11 +134,11 @@ namespace NetflixCatalogue
 
         }
 
-        public void selectGenreInMenuToGetShow(ConsoleKeyInfo keyPressed)
+        public void selectGenreInMenuToGetShow(string keyPressed)
         {
             try
             {
-                int numPressed = int.Parse(keyPressed.KeyChar.ToString()) - 1;
+                int numPressed = int.Parse(keyPressed.ToString()) - 1;
                 getListOfShows(genreList[numPressed]);
             }
             catch (Exception e)
@@ -144,28 +159,29 @@ namespace NetflixCatalogue
                 Console.WriteLine("[{0}] Add {1}", i+1, thingsToAdd[i]);
             }
 
-            ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+            // ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+            string keyPressed = Console.ReadLine();
             selectOptionInAddMenu(keyPressed);
         }
 
-        public void selectOptionInAddMenu(ConsoleKeyInfo keyPressed)
+        public void selectOptionInAddMenu(string keyPressed)
         {
-            if (keyPressed.KeyChar.Equals('1'))
+            if (keyPressed.Equals("1"))
             {
                 //genre
                 addNewGenre();
             }
-            else if (keyPressed.KeyChar.Equals('2'))
+            else if (keyPressed.Equals("2"))
             {
                 //show
                 addNewShow();
             }
-            else if (keyPressed.KeyChar.Equals('3'))
+            else if (keyPressed.Equals("3"))
             {
                 //movie
                 addNewMovie();
             }
-            else if (keyPressed.KeyChar.Equals('4'))
+            else if (keyPressed.Equals("4"))
             {
                 //episode to show
                 getEpisodesToShowMenu();
@@ -187,10 +203,12 @@ namespace NetflixCatalogue
             string showName = Console.ReadLine();
 
             Console.WriteLine("What is the rating for this show?");
-            string rating = Console.ReadLine();
+            double rating = Double.Parse(Console.ReadLine());
 
             Console.WriteLine("What is the genre for this show?");
             string genreType = Console.ReadLine();
+            bool exist = checkIfGenreExist(genreType);
+            genreDoesNotExitCreate(exist, genreType);
 
             Show newShow = new Show(showName, rating, genreType);
 
@@ -212,10 +230,12 @@ namespace NetflixCatalogue
             string movieName = Console.ReadLine();
 
             Console.WriteLine("What is the rating for this Movie?");
-            string rating = Console.ReadLine();
+            double rating = Double.Parse(Console.ReadLine());
 
             Console.WriteLine("What is the genre for this Movie?");
             string genreType = Console.ReadLine();
+            bool exist =checkIfGenreExist(genreType);
+            genreDoesNotExitCreate(exist, genreType);
 
             Console.WriteLine("How many hours is this movie?");
             int movieHours = int.Parse(Console.ReadLine());
@@ -233,7 +253,6 @@ namespace NetflixCatalogue
                     genreList[i] += newMovie;
                 }
             }
-
         }
 
         public void getEpisodesToShowMenu()
@@ -241,7 +260,8 @@ namespace NetflixCatalogue
             Console.WriteLine();
             Console.WriteLine("Select option from menu to find show:");
             getGenreMenu();
-            ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+            string keyPressed = Console.ReadLine();
+            //ConsoleKeyInfo keyPressed = Console.ReadKey(true);
             selectGenreInMenuToGetShow(keyPressed);
            
 
@@ -261,24 +281,53 @@ namespace NetflixCatalogue
 
         public void selectShowToAddEpisode(Genre genre)
         {
-            ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+            //ConsoleKeyInfo keyPressed = Console.ReadKey(true);
+            string keyPressed = Console.ReadLine();
 
-            Console.WriteLine("You pressed {0}", keyPressed.KeyChar);
-
-            int numShow = int.Parse(keyPressed.KeyChar.ToString()) - 1;
+            
+            int numShow = int.Parse(keyPressed.ToString()) - 1;
             Console.WriteLine(genre.titleList[numShow]);
             Console.WriteLine("Do you want to add [a] or view [v] episode?");
+            addEpisodesToShow(genre, numShow);
 
         }
 
 
         public void addEpisodesToShow(Genre genre, int numShow)
         {
-            ConsoleKeyInfo keypressed = Console.ReadKey();
+            //ConsoleKeyInfo keypressed = Console.ReadKey();
 
-            if (keypressed.KeyChar.Equals('a'))
+            string keyPressed = Console.ReadLine();
+
+            if (keyPressed.Equals("a"))
             {
-                //
+                
+                Console.WriteLine(genre.titleList[numShow].name);
+            }
+        }
+
+
+        public bool checkIfGenreExist(String genreType)
+        {
+            bool alreadyExists = false;
+
+            for(int i = 0; i < genreList.Count; i++)
+            {
+                if (genreType.Equals(genreList[i].genreType))
+                {
+                    alreadyExists = true;
+                    return alreadyExists;
+                }
+            }
+            return alreadyExists;
+        }
+
+        public void genreDoesNotExitCreate(bool exists, string genreType)
+        {
+            if (exists == false)
+            {
+                Genre newGenre = new Genre(genreType);
+                genreList.Add(newGenre);
             }
         }
     }
